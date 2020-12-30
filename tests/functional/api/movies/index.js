@@ -74,12 +74,10 @@ describe("Movies endpoint", () => {
         return request(api)
           .get("/api/movies/xxx")
           .set("Accept", "application/json")
-          .expect("Content-Type", /json/)
-          .expect({
-            success: false,
-            status_code: 34,
-            status_message: "The resource you requested could not be found.",
-          });
+          .set("Authorization", token)
+          // .expect("Content-Type", /json/)
+          .expect({}
+          );
       });
     });
   });

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 import User from "../../../../api/users/userModel";
 
 const expect = chai.expect;
-
+let token;
 let db;
 let api;
 
@@ -20,6 +20,28 @@ const users = [
 ];
 
 describe("Users endpoint", () => {
+  beforeEach( function(done){
+    this.timeout(6000)
+    try {
+      api = require("../../../../index");
+    } catch (err) {
+      console.error(`failed to Load user Data: ${err}`);
+    }
+    setTimeout(()=>{
+      request(api)
+      .post("/api/users")
+      .send({
+        "username":"user1",
+        "password":"test1"
+      })
+      .end((err,res)=>{
+        console.log(res.body);
+        token = res.body.token;
+        console.log(token);
+        done();
+    });
+      },4000)
+    });
   before(() => {
     mongoose.connect(process.env.mongoDB, {
       useNewUrlParser: true,
@@ -66,15 +88,15 @@ describe("Users endpoint", () => {
   });
 
   describe("POST / ", () => {
-    it("should return a 200 status and the confirmation message", () => {
+    it("should return a 201 status", () => {
       return request(api)
-        .post("/api/users")
+        .post("/api/users/?action=register")
         .send({
           username: "user3",
           password: "test3",
         })
-        .expect(200)
-        .expect({ success: true, token: "FakeTokenForNow" });
+        .expect(201)
+        .expect({ code: 201, msg: 'Successful created new user.' });
     });
     after(() => {
       return request(api)
