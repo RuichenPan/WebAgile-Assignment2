@@ -69,39 +69,23 @@ describe("Watchlist Movies endpoint", () => {
         done();
         });
       });
-    });
-    describe("Delete /watchlist movies ", () => {
-        it("should return 0 movies and a status 200", (done) => {
+    it("should return 0 movies and a status 200", (done) => {
+        request(api)
+        .delete(`/api/upcoming/${id}?action=deletefromwatchlist`)
+        .end((err, res) => {
             request(api)
-            .post(`/api/upcoming/${id}?action=addtowatchlist`)
-            .end((err, res) => {
-                request(api)
-                    .get("/api/watchlist")
-                    .set("Accept", "application/json")
-                    .set("Authorization", token)
-                    .expect("Content-Type", /json/)
-                    .expect(200)
-                    .end((err, res) => {
-                        expect(res.body).to.be.a("array");
-                        expect(res.body.length).to.equal(1);
-                        request(api)
-                        .delete(`/api/upcoming/${id}?action=deletefromwatchlist`)
-                        .end((err, res) => {
-                            request(api)
-                                .get("/api/watchlist")
-                                .set("Accept", "application/json")
-                                .set("Authorization", token)
-                                .expect("Content-Type", /json/)
-                                .expect(200)
-                                .end((err, res) => {
-                                    expect(res.body).to.be.a("array");
-                                    expect(res.body.length).to.equal(0);
-                                });
-                        });
-                    });
-            done();
-            });
-          });
+                .get("/api/watchlist")
+                .set("Accept", "application/json")
+                .set("Authorization", token)
+                .expect("Content-Type", /json/)
+                .expect(200)
+                .end((err, res) => {
+                    expect(res.body).to.be.a("array");
+                    expect(res.body.length).to.equal(0);
+                });
+        done();
         });
+        });
+    });
 });
 
