@@ -65,11 +65,9 @@ describe("Watchlist Movies endpoint", () => {
                 .end((err, res) => {
                     expect(res.body).to.be.a("array");
                     expect(res.body.length).to.equal(1);
-                done();
                 });
         done();
         });
-
       });
     });
     describe("Delete /watchlist movies ", () => {
@@ -98,15 +96,11 @@ describe("Watchlist Movies endpoint", () => {
                                 .end((err, res) => {
                                     expect(res.body).to.be.a("array");
                                     expect(res.body.length).to.equal(0);
-                                done();
                                 });
-                        done();
                         });
-                    done();
                     });
             done();
             });
-    
           });
         });
 });
