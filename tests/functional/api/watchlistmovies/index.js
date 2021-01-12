@@ -71,7 +71,7 @@ describe("Watchlist Movies endpoint", () => {
       });
     it("should return 0 movies and a status 200", (done) => {
         request(api)
-        .delete(`/api/upcoming/${id}?action=deletefromwatchlist`)
+        .delete(`/api/watchlist/${id}?action=deletefromwatchlist`)
         .end((err, res) => {
             request(api)
                 .get("/api/watchlist")
