@@ -8,6 +8,7 @@ import {loadUsers, loadMovies,loadupcomingMovies} from './seedData';
 import usersRouter from './api/users';
 import userGenres from './api/genres';
 import upcomingRouter from './api/upcomingMovies'
+import watchlistRouter from './api/watchlistMovies'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
@@ -56,6 +57,7 @@ app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRou
 app.use('/api/users', usersRouter);
 app.use('/api/genres', userGenres);
 app.use('/api/upcoming',upcomingRouter)
+app.use('/api/watchlist',watchlistRouter)
 app.use(errHandler);
 
 

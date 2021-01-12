@@ -55,31 +55,31 @@ describe("Upcoming Movies endpoint", () => {
     });
   
 
-  // describe("GET /upcomingMovies/:id", () => {
-  //   describe("when the id is valid", () => {
-  //     it("should return the matching movie", () => {
-  //       return request(api)
-  //         .get(`/api/upcoming/${sampleMovie.id}`)
-  //         .set("Accept", "application/json")
-  //         .set("Authorization", token)
-  //         .expect("Content-Type", /json/)
-  //         .expect(200)
-  //         .then((res) => {
-  //           expect(res.body).to.have.property("title", sampleMovie.title);
-  //         });
-  //     });
-  //   });
-  //   describe("when the id is invalid", () => {
-  //     it("should return the NOT found message", () => {
-  //       return request(api)
-  //         .get("/api/upcoming/xxx")
-  //         .set("Accept", "application/json")
-  //         .set("Authorization", token)
-  //         // .expect("Content-Type", /json/)
-  //         .expect({}
-  //         );
-  //     });
-  //   });
-  // });
+  describe("GET /upcomingMovies/:id", () => {
+    describe("when the id is valid", () => {
+      it("should return the matching movie", () => {
+        return request(api)
+          .get(`/api/upcoming/${sampleMovie.id}`)
+          .set("Accept", "application/json")
+          .set("Authorization", token)
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("title", sampleMovie.title);
+          });
+      });
+    });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/upcoming/xxx")
+          .set("Accept", "application/json")
+          .set("Authorization", token)
+          // .expect("Content-Type", /json/)
+          .expect({}
+          );
+      });
+    });
+  });
 });
 

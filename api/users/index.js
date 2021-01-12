@@ -78,4 +78,24 @@ router.post('/:userName/favourites', async (req, res, next) => {
     next(err)
   }
 });
+
+router.delete('/',async (req, res, next) => {
+  const username = req.body.username;
+  const deleteuser=await User.findByUserName(username);
+  if (req.query.action === 'deleteuser') {
+    if(deleteuser){
+      await User.collection.deleteOne(deleteuser).catch(next);
+      res.status(200).json({
+      code:200,
+      message:'success delete from user list'
+      })
+    }else{
+      res.status(401).json({
+      code:401,
+      message:'Sorry, this user account is not exist.'
+    })
+  }
+
+  }
+});
 export default router;
