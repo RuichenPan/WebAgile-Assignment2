@@ -4,12 +4,16 @@ import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 import loglevel from 'loglevel';
 import './db';
-import {loadUsers, loadMovies} from './seedData';
+import {loadUsers, loadMovies,loadupcomingMovies} from './seedData';
 import usersRouter from './api/users';
 import userGenres from './api/genres';
+import upcomingRouter from './api/upcomingMovies'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
 dotenv.config();
 if (process.env.NODE_ENV === 'test') {
   loglevel.setLevel('warn')
@@ -31,12 +35,18 @@ const errHandler = (err, req, res, next) => {
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
+  loadupcomingMovies();
 }
 app.use(session({
   secret: 'ilikecake',
   resave: true,
   saveUninitialized: true
 }));
+
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(passport.initialize())
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -45,6 +55,7 @@ app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRou
 //Users router
 app.use('/api/users', usersRouter);
 app.use('/api/genres', userGenres);
+app.use('/api/upcoming',upcomingRouter)
 app.use(errHandler);
 
 

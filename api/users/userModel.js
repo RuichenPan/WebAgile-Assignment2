@@ -41,11 +41,11 @@ UserSchema.pre('save', function(next) {
   }
 });
 
-const passwordValidator = (password) =>{
-  let passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
-  return passwordRegEx.test(password);
-}
+// const passwordValidator = (password) =>{
+//   let passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+//   return passwordRegEx.test(password);
+// }
 
-UserSchema.path('password').validate(passwordValidator);
+// UserSchema.path('password').validate(passwordValidator);
 
 export default mongoose.model('User', UserSchema);
