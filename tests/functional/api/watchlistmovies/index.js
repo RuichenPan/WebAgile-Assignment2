@@ -73,7 +73,7 @@ describe("Watchlist Movies endpoint", () => {
       });
     });
     describe("Delete /watchlist movies ", () => {
-        it.only("should return 0 movies and a status 200", (done) => {
+        it("should return 0 movies and a status 200", (done) => {
             request(api)
             .post(`/api/upcoming/${id}?action=addtowatchlist`)
             .end((err, res) => {
