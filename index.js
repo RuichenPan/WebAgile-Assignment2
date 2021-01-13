@@ -4,11 +4,12 @@ import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 import loglevel from 'loglevel';
 import './db';
-import {loadUsers, loadMovies,loadupcomingMovies} from './seedData';
+import {loadUsers, loadMovies,loadupcomingMovies,loadNowplayingMovies} from './seedData';
 import usersRouter from './api/users';
 import userGenres from './api/genres';
 import upcomingRouter from './api/upcomingMovies'
 import watchlistRouter from './api/watchlistMovies'
+import nowplayingRouter from './api/nowplayingMovies'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
@@ -37,6 +38,7 @@ if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
   loadupcomingMovies();
+  loadNowplayingMovies();
 }
 app.use(session({
   secret: 'ilikecake',
@@ -58,6 +60,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/genres', userGenres);
 app.use('/api/upcoming',upcomingRouter)
 app.use('/api/watchlist',watchlistRouter)
+app.use('/api/nowplaying',nowplayingRouter);
 app.use(errHandler);
 
 
