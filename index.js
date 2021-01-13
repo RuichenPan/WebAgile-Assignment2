@@ -4,13 +4,14 @@ import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 import loglevel from 'loglevel';
 import './db';
-import {loadUsers, loadMovies,loadupcomingMovies,loadNowplayingMovies,loadTopratedMovies} from './seedData';
+import {loadUsers, loadMovies,loadupcomingMovies,loadNowplayingMovies,loadTopratedMovies,loadPopularActors} from './seedData';
 import usersRouter from './api/users';
 import userGenres from './api/genres';
 import upcomingRouter from './api/upcomingMovies'
 import watchlistRouter from './api/watchlistMovies'
 import nowplayingRouter from './api/nowplayingMovies'
 import topratedRouter from './api/topratedMovies'
+import actorsRouter from './api/popularActors'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
@@ -41,6 +42,7 @@ if (process.env.SEED_DB) {
   loadupcomingMovies();
   loadNowplayingMovies();
   loadTopratedMovies();
+  loadPopularActors();
 }
 app.use(session({
   secret: 'ilikecake',
@@ -64,6 +66,7 @@ app.use('/api/upcoming',upcomingRouter)
 app.use('/api/watchlist',watchlistRouter)
 app.use('/api/nowplaying',nowplayingRouter);
 app.use('/api/toprated',topratedRouter);
+app.use('/api/actors', actorsRouter);
 app.use(errHandler);
 
 
