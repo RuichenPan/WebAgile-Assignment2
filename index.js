@@ -12,6 +12,7 @@ import watchlistRouter from './api/watchlistMovies'
 import nowplayingRouter from './api/nowplayingMovies'
 import topratedRouter from './api/topratedMovies'
 import actorsRouter from './api/popularActors'
+import favouriteactorsRouter from './api/favouriteActors'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
@@ -67,6 +68,7 @@ app.use('/api/watchlist',watchlistRouter)
 app.use('/api/nowplaying',nowplayingRouter);
 app.use('/api/toprated',topratedRouter);
 app.use('/api/actors', actorsRouter);
+app.use('/api/favouriteactors', favouriteactorsRouter);
 app.use(errHandler);
 
 

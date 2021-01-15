@@ -1,25 +1,24 @@
 import express from 'express';
-
-import watchlistMovieModel from '../watchlistMovies/watchlistMovieModel'
+import favouriteActorModel from '../favouriteActors/favouriteActorModel'
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  watchlistMovieModel.find().then(movies => res.status(200).send(movies)).catch(next);
+  favouriteActorModel.find().then(actors => res.status(200).send(actors)).catch(next);
 });
 
 router.get('/:id', (req, res, next) => {
   const id = parseInt(req.params.id);
-  watchlistMovieModel.findByMovieDBId(id).then(movie => res.status(200).send(movie)).catch(next);
+  favouriteActorModel.findByActorDBId(id).then(actor => res.status(200).send(actor)).catch(next);
 });
 
 router.delete('/:id',async (req, res, next) => {
   const id = parseInt(req.params.id);
-  const deletemovie=await watchlistMovieModel.findByMovieDBId(id);
-  if (req.query.action === 'deletefromwatchlist') {
-    await watchlistMovieModel.collection.deleteOne(deletemovie).catch(next);
+  const deleteactor=await favouriteActorModel.findByActorDBId(id);
+  if (req.query.action === 'deletefromfavouriteactor') {
+    await favouriteActorModel.collection.deleteOne(deleteactor).catch(next);
     res.status(200).json({
       code:200,
-      message:'success delete from watch list'
+      message:'success delete from favourite actor'
     })
   }
 });
