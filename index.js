@@ -4,7 +4,7 @@ import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 import loglevel from 'loglevel';
 import './db';
-import {loadUsers, loadMovies,loadupcomingMovies,loadNowplayingMovies,loadTopratedMovies,loadPopularActors} from './seedData';
+import {loadUsers, loadMovies,loadupcomingMovies,loadNowplayingMovies,loadTopratedMovies,loadPopularActors,loadSimilarMovies} from './seedData';
 import usersRouter from './api/users';
 import userGenres from './api/genres';
 import upcomingRouter from './api/upcomingMovies'
@@ -13,6 +13,7 @@ import nowplayingRouter from './api/nowplayingMovies'
 import topratedRouter from './api/topratedMovies'
 import actorsRouter from './api/popularActors'
 import favouriteactorsRouter from './api/favouriteActors'
+import similarRouter from './api/similarMovies'
 import session from 'express-session';
 import authenticate from './authenticate';
 import passport from './authenticate';
@@ -69,6 +70,7 @@ app.use('/api/nowplaying',nowplayingRouter);
 app.use('/api/toprated',topratedRouter);
 app.use('/api/actors', actorsRouter);
 app.use('/api/favouriteactors', favouriteactorsRouter);
+app.use('/api/similar', similarRouter)
 app.use(errHandler);
 
 
