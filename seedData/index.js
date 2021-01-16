@@ -5,12 +5,14 @@ import nowplayingMovieModel from '../api/nowplayingMovies/nowplayingMovie';
 import topratedMovieModel from '../api/topratedMovies/topratedMovie';
 import actorModel from '../api/popularActors/popularActor';
 import similarMovieModel from '../api/similarMovies/similarMovieModel';
+import recommendMoviesModel from '../api/recommendMovies/recommendMoviesModel';
 import {movies} from './movies.js';
 import {getUpcomingMovies} from '../api/tmdb-api'
 import {getNowplayingMovies} from '../api/tmdb-api'
 import {getTopratedMovies} from '../api/tmdb-api'
 import {getPopularActors} from '../api/tmdb-api'
 import {getSimilarMovies} from '../api/tmdb-api'
+import {getRecommendMovies} from '../api/tmdb-api'
 const users = [
   {
     'username': 'user1',
@@ -100,6 +102,18 @@ export async function loadSimilarMovies(id) {
       await similarMovieModel.deleteMany();
       await similarMovieModel.collection.insertMany(res);
       console.info(`${res.length}Similar Movies were successfully stored.`);
+    })
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+export async function loadRecommendMovies(id) {
+  console.log('load recommend movies');
+  try {
+    getRecommendMovies(id).then(async res=>{
+      await recommendMoviesModel.deleteMany();
+      await recommendMoviesModel.collection.insertMany(res);
+      console.info(`${res.length}Recommend Movies were successfully stored.`);
     })
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);

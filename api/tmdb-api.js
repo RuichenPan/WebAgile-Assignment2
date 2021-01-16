@@ -63,3 +63,10 @@ export const getMovies = () => {
       .then(res => res.json())
       .then(json => json.results);
   };
+  export const getRecommendMovies = (movie_id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/recommendations?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };
