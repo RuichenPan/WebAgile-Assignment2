@@ -10,7 +10,7 @@ const id = 1245
 describe("Favourite Actors endpoint", () => {
 
   beforeEach( function(done){
-    this.timeout(6000)
+    this.timeout(8000)
     try {
       api = require("../../../../index");
     } catch (err) {
@@ -51,6 +51,17 @@ describe("Favourite Actors endpoint", () => {
         });
       });
     });
+    it("should return unauthorized", (done) => {
+      request(api)
+      .get("/api/favouriteactors")
+      .expect("Content-Type", /json/)
+      .expect(401)
+      .end((err, res) => {
+          expect("Unauthorized");
+          done();
+      });
+     
+    });
   describe("Post /favourite actors ", () => {
     it("should return 1 actor and a status 200", (done) => {
         request(api)
@@ -72,6 +83,8 @@ describe("Favourite Actors endpoint", () => {
     it("should return 0 actor and a status 200", (done) => {
         request(api)
         .delete(`/api/favouriteactors/${id}?action=deletefromfavouriteactor`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
         .end((err, res) => {
             request(api)
                 .get("/api/favouriteactors")

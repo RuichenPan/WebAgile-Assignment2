@@ -70,7 +70,7 @@ app.use('/api/watchlist', passport.authenticate('jwt', {session: false}), watchl
 app.use('/api/nowplaying',nowplayingRouter);
 app.use('/api/toprated',topratedRouter);
 app.use('/api/actors', actorsRouter);
-app.use('/api/favouriteactors', favouriteactorsRouter);
+app.use('/api/favouriteactors', passport.authenticate('jwt', {session: false}), favouriteactorsRouter);
 app.use('/api/similar', similarRouter)
 app.use('/api/recommend',recommendRouter)
 app.use(errHandler);
