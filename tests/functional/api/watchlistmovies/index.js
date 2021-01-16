@@ -10,7 +10,7 @@ const id = 464052
 describe("Watchlist Movies endpoint", () => {
 
   beforeEach( function(done){
-    this.timeout(6000)
+    this.timeout(8000)
     try {
       api = require("../../../../index");
     } catch (err) {
