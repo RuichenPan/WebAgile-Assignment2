@@ -71,6 +71,8 @@ describe("Watchlist Movies endpoint", () => {
       });
     it("should return 0 movies and a status 200", (done) => {
         request(api)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
         .delete(`/api/watchlist/${id}?action=deletefromwatchlist`)
         .end((err, res) => {
             request(api)

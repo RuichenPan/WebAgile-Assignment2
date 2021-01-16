@@ -61,12 +61,12 @@ app.use(passport.initialize())
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
+app.use('/api/movies',moviesRouter);
 //Users router
 app.use('/api/users', usersRouter);
 app.use('/api/genres', userGenres);
 app.use('/api/upcoming',upcomingRouter)
-app.use('/api/watchlist',watchlistRouter)
+app.use('/api/watchlist', passport.authenticate('jwt', {session: false}), watchlistRouter)
 app.use('/api/nowplaying',nowplayingRouter);
 app.use('/api/toprated',topratedRouter);
 app.use('/api/actors', actorsRouter);
