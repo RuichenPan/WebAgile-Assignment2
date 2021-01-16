@@ -87,5 +87,16 @@ describe("Favourite Actors endpoint", () => {
         });
         });
     });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/favouriteactors/999999")
+          .set("Accept", "application/json")
+          .set("Authorization", token)
+          .expect(401)
+          .expect("Sorry, this actor id is not exist."
+          );
+      });
+    });
 });
 
