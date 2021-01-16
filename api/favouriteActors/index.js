@@ -6,9 +6,14 @@ router.get('/', (req, res, next) => {
   favouriteActorModel.find().then(actors => res.status(200).send(actors)).catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id);
-  favouriteActorModel.findByActorDBId(id).then(actor => res.status(200).send(actor)).catch(next);
+router.get('/:id', async (req, res, next) => {
+  const id = req.params.id;
+  const actor = await favouriteActorModel.findByActorDBId(id)
+  if(actor){
+    res.status(200).send(actor)
+  }else{
+    res.status(401).send("Sorry, this actor id is not exist.")
+  }
 });
 
 router.delete('/:id',async (req, res, next) => {
