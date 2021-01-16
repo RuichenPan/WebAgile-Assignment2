@@ -56,7 +56,7 @@ describe("Popular Actors endpoint", () => {
         .set("Accept", "application/json")
         .set("Authorization", token)
         .expect(401)
-        .expect("Sorry, this movie id is not exist."
+        .expect("Sorry, this actor id is not exist."
         );
     });
   });
