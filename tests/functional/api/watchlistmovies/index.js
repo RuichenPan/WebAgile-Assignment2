@@ -50,8 +50,18 @@ describe("Watchlist Movies endpoint", () => {
         done();
         });
       });
+    it("should return unauthorized", (done) => {
+      request(api)
+      .get("/api/watchlist")
+      .expect("Content-Type", /json/)
+      .expect(401)
+      .end((err, res) => {
+          expect("Unauthorized");
+          done();
+      });
+      });
     });
-  describe("Post /watchlist movies ", () => {
+  describe("Post&Delete/watchlist movies ", () => {
     it("should return 1 movies and a status 200", (done) => {
         request(api)
         .post(`/api/upcoming/${id}?action=addtowatchlist`)
