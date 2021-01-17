@@ -112,4 +112,19 @@ describe("Users endpoint", () => {
         });
     });
   });
+  describe("Delete/users ", () => {
+    it("should return the user account is not exist", (done) => {
+      request(api)
+      .delete(`/api/users?action=deleteuser`)       
+      .send({
+        username: "user4",
+        password: "test4",
+      }) 
+      .end((err, res) => {
+          expect(401)
+          expect("Sorry, this user account is not exist.");
+          done();
+      });
+      });
+  });
 });
