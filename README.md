@@ -10,13 +10,12 @@ Name: Ruichen Pan
  + Feature 3 - React integration(GET POST and Delete Pust data to API)
  + Feature 4 - Coherent API design and modelling supporting full manipulation of resources.
  + Feature 5 - Nested Document and/or object referencing in Mongo/Mongoose.
- + Feature 6 - Custom validation using Mongoose.
- + Feature 7 - Basic Authentication and protected routes.
- + Feature 8 - Good use of express middleware (e.g. Error handling).
- + Feature 9 - Substantial React App integration.
- + Feature 10 - Authentication/verification to accomplish richer functionality.
- + Feature 11 - Swagger API documentation (I have added the swagger in my project, but I don't have enough time to write the whole document)
- + Feature 12 - Logging
+ + Feature 6 - Basic Authentication and protected routes.
+ + Feature 7 - Good use of express middleware (e.g. Error handling).
+ + Feature 8 - Substantial React App integration.
+ + Feature 9 - Authentication/verification to accomplish richer functionality.
+ + Feature 10 - Swagger API documentation (I have added the swagger in my project, but I don't have enough time to write the whole document)
+
 
 ## Installation Requirements
 
