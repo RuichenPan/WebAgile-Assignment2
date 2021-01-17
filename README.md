@@ -20,18 +20,19 @@ Name: Ruichen Pan
 
 ## Installation Requirements
 
-Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance). 
+Describe what needs to be on the machine to run the API
+(Node v?, NPM, MongoDB instance). 
 
 Describe getting/installing the software, perhaps:
 
 ```bat
-git clone http:\myrepo.git
+git clone https://github.com/RuichenPan/WebAgile-Assignment2.git
 ```
 
 followed by installation
 
 ```bat
-git install
+npm install
 ```
 
 ## API Configuration
